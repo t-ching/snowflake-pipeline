@@ -41,7 +41,7 @@ CREATE OR REPLACE TABLE NYC_TAXI_DB.BRONZE.RAW_YELLOW_TRIPDATA (
     load_timestamp          TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 );
 
--- Load January 2019 data from Parquet into the Bronze table
+-- Load 2019 data from Parquet into the Bronze table
 COPY INTO NYC_TAXI_DB.BRONZE.RAW_YELLOW_TRIPDATA (
     vendor_id, tpep_pickup_datetime, tpep_dropoff_datetime,
     passenger_count, trip_distance, rate_code_id, store_and_fwd_flag,
@@ -70,9 +70,10 @@ FROM (
         $1:totalAmount::FLOAT
     FROM @NYC_TAXI_DB.BRONZE.NYC_TLC_STAGE
 )
-PATTERN = '.*puYear=2019/puMonth=1/.*\.parquet'
+PATTERN = '.*puYear=2019/.*\.parquet'
 FILE_FORMAT = (TYPE = PARQUET)
 ON_ERROR = 'CONTINUE';
 
 -- Verify row count
 SELECT COUNT(*) AS bronze_row_count FROM NYC_TAXI_DB.BRONZE.RAW_YELLOW_TRIPDATA;
+

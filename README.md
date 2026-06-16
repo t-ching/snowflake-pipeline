@@ -1,6 +1,6 @@
-# NYC Taxi Medallion Pipeline on Snowflake
+# A Native Snowflake Project on Data Engineering and ML Model.
 
-End-to-end data platform built on Snowflake demonstrating the **medallion architecture** (Bronze / Silver / Gold) with ML fare prediction and a Streamlit dashboard.
+Utilise the pubicly available New York City Taxi & Limousine Commission (TLC) trip data to built a data pipeline with ML fare prediction and a Streamlit dashboard.
 
 ## Architecture
 
@@ -26,7 +26,7 @@ Azure Open Data (NYC TLC Parquet)
 ## Dataset
 
 - **Source:** [Azure Open Datasets - NYC TLC Yellow Taxi](https://learn.microsoft.com/en-us/azure/open-datasets/dataset-taxi-yellow)
-- **Volume:** ~44M trips (January 2019)
+- **Volume:** ~44M trips (year 2019 only)
 - **Format:** Parquet, Hive-partitioned by `puYear` / `puMonth`
 
 ## Project Structure
@@ -34,13 +34,13 @@ Azure Open Data (NYC TLC Parquet)
 ```
 .
 ├── sql/
-│   ├── 01_setup_infrastructure.sql    # Database, schemas, warehouse
-│   ├── 02_bronze_ingestion.sql        # External stage + COPY INTO
+│   ├── 01_setup_infrastructure.sql         # Database, schemas, warehouse
+│   ├── 02_bronze_ingestion.sql             # External stage + COPY INTO
 │   └── 03_silver_gold_transformations.sql  # Silver cleaning + Gold aggregations
 ├── python/
-│   └── train_fare_model_pub.py        # ML training + writes to Gold
+│   └── train_fare_model_pub.py             # ML training + writes to Gold
 ├── streamlit/
-│   └── app_pub.py                     # Dashboard (4 tabs)
+│   └── app_pub.py                          # Dashboard (4 tabs)
 ├── requirements.txt
 ├── .env.example
 └── .gitignore
