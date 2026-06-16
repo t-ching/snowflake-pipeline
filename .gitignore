@@ -1,0 +1,21 @@
+# Environment
+.env
+.venv/
+__pycache__/
+*.pyc
+
+# Local-only files (use connections.toml, not for public sharing)
+python/train_fare_model.py
+streamlit/app.py
+
+# Snowflake local config (contains credentials)
+connections.toml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
